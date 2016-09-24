@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login/Register</title>
+</head>
+<body>
+	<h1>Welcome!</h1>
+	<h3>Register</h3>
+	<form action="{% url 'login:register' %}" method="post">
+		{% csrf_token %}
+		Name: <input type="text" name="name">
+		Username: <input type="text" name="username">
+		Password: <input type="password" name="password">
+		Confirm PW: <input type="password" name="dblcheck">
+		<input type="submit" value="Register">
+		<h5>*Password should be at least 8 characters</h5>
+	</form>
+	<h3>Login</h3>
+	<form action="{% url 'login:login' %}" method="post">
+		{% csrf_token %}
+		Username: <input type="text" name="username">
+		Password: <input type="password" name="password">
+		<input type="submit" value="Login">
+	</form>
+	{% for item in errors.values %}
+	<p>{{item}}</p>
+	{% endfor %}
+</body>
+</html>

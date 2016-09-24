@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show</title>
+</head>
+<body>
+	<h3><a href="{% url 'trips:dashboard' %}">Home</a></h3>
+	<h3><a href="{% url 'login:index' %}">Logout</a></h3>
+	<h1>{{trip.destination}}</h1>
+	<h3>Planned By: {{trip.planner.name}}</h3>
+	<h3>Description: {{trip.description}}</h3>
+	<h3>Travel Date From: {{trip.date_from}}</h3>
+	<h3>Travel Date To: {{trip.date_to}}</h3>
+	<h1>Other users joining the trip:</h1>
+	{% for user in users %}
+	{% for companion in companions %}
+	{% if companion.buddy.id == user.id and companion.trip.id == trip.id%}
+	<p>{{user.name}}</p>
+	{% endif %}
+	{% endfor %}
+	{% endfor %}
+</body>
+</html>
